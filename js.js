@@ -176,96 +176,55 @@ randomCharacterBtn.addEventListener("click", () => {
 const boxTemplate = document.querySelector("[data-box-template]")
 const boxContainer = document.querySelector("[data-box-container]")
 function createEntry(el) {
-    if (el.typeTag === typeCharacter) {
-        const newBox = boxTemplate.content.cloneNode(true)
+    // shorten description if too long
+    // const descLimit = 300
+    let descData = el.description
+    // if (descData.length > descLimit) {
+    //     descData = descData.slice(0, 300) + "..."
+    // }
 
-        const dataDiv = newBox.querySelector("[data-div]")
-        dataDiv.classList.add("output-box", typeCharacter)
+    console.log(el)
 
-        if (el.pic) {
-            const image = newBox.querySelector("[data-image]")
-            image.classList.add("imagebox")
-            image.src = `${el.pic}`
-        }
+    let type = ""
 
-        const type = newBox.querySelector("[data-type]")
-        type.classList.add("typecharacter")
-        type.textContent = el.typeTag
-
-        const name = newBox.querySelector("[data-name]")
-        name.textContent = `Name: ${el.name}`
-
-        if (el.japaneseName) {
-            const japaneseName = newBox.querySelector("[data-japanese]")
-            japaneseName.textContent = `Japanese: ${el.japaneseName}`
-        }
-
-        const firstAppearance = newBox.querySelector("[data-first-appearance]")
-        firstAppearance.textContent = `First appeared in: ${el.origin}`
-
-        const description = newBox.querySelector("[data-description]")
-        description.textContent = `${el.description}`
-
-        boxContainer.append(newBox)
+    if (el.typeTag === "Character") {
+        type = el.typeTag.toLowerCase()
+    }
+    if (el.typeTag === "Monster") {
+        type = el.typeTag.toLowerCase()
+    }
+    if (el.typeTag === "Game") {
+        type = el.typeTag.toLowerCase()
     }
 
-    if (el.typeTag === typeMonster) {
-        const newBox = boxTemplate.content.cloneNode(true)
+    const newBox = boxTemplate.content.cloneNode(true)
 
-        const dataDiv = newBox.querySelector("[data-div]")
-        dataDiv.classList.add("output-box", typeMonster)
+    const dataDiv = newBox.querySelector("[data-div]")
+    dataDiv.classList.add("output-box", type)
 
-        if (el.pic) {
-            const image = newBox.querySelector("[data-image]")
-            image.classList.add("imagebox")
-            image.src = `${el.pic}`
-        }
+    const imageBox = newBox.querySelector("[data-image]")
+    imageBox.classList.add("imagebox", `imagebox-${type}`)
+    imageBox.src = type === "game" ? el.picture : el.pic
 
-        const type = newBox.querySelector("[data-type]")
-        type.classList.add("typemonster")
-        type.textContent = el.typeTag
+    const typeBox = newBox.querySelector("[data-type]")
+    typeBox.classList.add(type)
+    typeBox.textContent = type.charAt(0).toUpperCase() + type.slice(1)
 
-        const name = newBox.querySelector("[data-name]")
-        name.textContent = `Name: ${el.name}`
+    const nameBox = newBox.querySelector("[data-name]")
+    nameBox.textContent = `Name: ${el.name}`
 
-        if (el.japaneseName) {
-            const japaneseName = newBox.querySelector("[data-japanese]")
-            japaneseName.textContent = `Japanese: ${el.japaneseName}`
-        }
-
-        const firstAppearance = newBox.querySelector("[data-first-appearance]")
-        firstAppearance.textContent = `First appeared in: ${el.origin}`
-
-        const description = newBox.querySelector("[data-description]")
-        description.textContent = `${el.description}`
-
-        boxContainer.append(newBox)
+    if (el.japaneseName) {
+        const japaneseNameBox = newBox.querySelector("[data-japanese]")
+        japaneseNameBox.textContent = `Japanese: ${el.japaneseName}`
     }
 
-    if (el.typeTag === typeGame) {
-        const newBox = boxTemplate.content.cloneNode(true)
+    const firstAppearanceBox = newBox.querySelector("[data-first-appearance]")
+    firstAppearanceBox.textContent = `First appeared in: ${el.origin}`
 
-        const dataDiv = newBox.querySelector("[data-div]")
-        dataDiv.classList.add("output-box", typeGame)
+    const descriptionBox = newBox.querySelector("[data-description]")
+    descriptionBox.textContent = descData
 
-        if (el.picture) {
-            const image = newBox.querySelector("[data-image]")
-            image.classList.add("imagebox", "imagebox-game")
-            image.src = `${el.picture}`
-        }
-
-        const type = newBox.querySelector("[data-type]")
-        type.classList.add("typegame")
-        type.textContent = el.typeTag
-
-        const name = newBox.querySelector("[data-name]")
-        name.textContent = `Name: ${el.name}`
-
-        const description = newBox.querySelector("[data-description]")
-        description.textContent = `${el.description}`
-
-        boxContainer.append(newBox)
-    }
+    boxContainer.append(newBox)
 }
 
 /*-----------------------------------
@@ -311,7 +270,7 @@ function performSearchOutput() {
         let initialMsg = document.createElement("div")
         initialMsg.classList.add("output-box", "initialmsg")
         let p = document.createElement("p")
-        p.innerHTML = "Please enter serach term that is at least two characters long"
+        p.innerHTML = "Please enter search term that is at least two characters long"
         initialMsg.appendChild(p)
         container.appendChild(initialMsg)
     }
