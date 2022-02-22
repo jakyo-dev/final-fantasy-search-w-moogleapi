@@ -67,6 +67,7 @@ footer {
 }
 
 #searchInp {
+    width: 100%;
     max-width: 500px;
     font-size: 1.1em;
     text-align: center;
