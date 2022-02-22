@@ -165,7 +165,8 @@ randomCharacterBtn.addEventListener("click", () => {
             if (data.pictures.length != 0) {
                 data.pic = data.pictures["0"].url
             }
-            let { name, pic, japaneseName, origin, description } = data
+            console.log(data)
+            let { name, pic, japaneseName = "", origin, description } = data
             return createBox(name, pic, japaneseName, origin, description)
         })
 })
@@ -246,8 +247,8 @@ function createBox(name, pic, japaneseName, origin, description) {
     nameTemp.textContent = `Name: ${name}`
 
     if (japaneseName) {
-        const japaneseName = newBox.querySelector("[data-japanese]")
-        japaneseName.textContent = `Japanese: ${japaneseName}`
+        const japaneseNameB = newBox.querySelector("[data-japanese]")
+        japaneseNameB.textContent = `Japanese: ${japaneseName}`
     }
 
     const firstAppearance = newBox.querySelector("[data-first-appearance]")
