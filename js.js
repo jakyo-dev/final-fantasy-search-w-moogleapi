@@ -177,11 +177,11 @@ const boxTemplate = document.querySelector("[data-box-template]")
 const boxContainer = document.querySelector("[data-box-container]")
 function createEntry(el) {
     // shorten description if too long
-    // const descLimit = 300
+    const descLimit = 300
     let descData = el.description
-    // if (descData.length > descLimit) {
-    //     descData = descData.slice(0, 300) + "..."
-    // }
+    if (descData.length > descLimit) {
+        descData = descData.substring(0, 300) + "..."
+    }
 
     console.log(el)
 
