@@ -1,10 +1,17 @@
 body {
     font-size: 16px;
-    width: 98vw;
-    background-image: url("https://wallpapercave.com/wp/4Z9eXRH.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
+        url("./ff-characters.png");
     background-size: cover;
     background-attachment: fixed;
+    margin: auto;
+    padding: 20px;
 }
+
+a {
+    color: white;
+}
+
 p,
 .header-container,
 #container {
@@ -22,7 +29,7 @@ p,
     justify-content: center;
 }
 
-.header-container,
+header,
 footer {
     background: linear-gradient(165deg, #0058b0, #000068, #000021);
     text-align: center;
@@ -37,7 +44,11 @@ footer {
     align-items: center;
 }
 
-.header-container :is(*),
+footer {
+    display: block;
+}
+
+header :is(*),
 footer {
     color: white;
 }
@@ -56,8 +67,7 @@ footer {
 }
 
 #searchInp {
-    max-width: 100%;
-    width: 500px;
+    max-width: 500px;
     font-size: 1.1em;
     text-align: center;
     background: #eceff1;
@@ -135,4 +145,17 @@ footer {
     justify-content: center;
     align-items: center;
     font-size: 1.2em;
+}
+
+@media only screen and (max-device-width: 800px) {
+    body {
+        padding: 10px;
+    }
+    header {
+        flex-direction: column;
+    }
+    header .introduction {
+        border: none;
+        border-bottom: 5px solid rgb(179, 179, 179);
+    }
 }
