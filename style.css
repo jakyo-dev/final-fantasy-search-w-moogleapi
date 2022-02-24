@@ -5,7 +5,9 @@ body {
     background-size: cover;
     background-attachment: fixed;
     margin: auto;
-    padding: 20px;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
 }
 
 a {
@@ -33,6 +35,7 @@ header,
 footer {
     background: linear-gradient(165deg, #0058b0, #000068, #000021);
     text-align: center;
+    margin: 1em;
     padding: 1em;
     border-style: ridge;
     border-width: 6px;
@@ -46,6 +49,7 @@ footer {
 
 footer {
     display: block;
+    margin-top: auto;
 }
 
 header :is(*),
